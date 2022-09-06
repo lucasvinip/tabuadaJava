@@ -1,5 +1,8 @@
 package br.senai.sp.jandira;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import br.senai.sp.jandira.gui.FrameTabuada;
 import br.senai.sp.jandira.model.Tabuada;
 
@@ -9,7 +12,10 @@ public class AppTabuada {
 		
 		FrameTabuada tela = new FrameTabuada();
 		tela.titulo = "Tabuada";
-		
+		tela.altura = 650;
+		tela.largura = 650;
+		tela.corDoTitulo = new Color(220, 20, 60);
+		tela.fonteDoTitulo = new Font("Cooper Black", Font.ITALIC, 15);
 		
 		
 		
