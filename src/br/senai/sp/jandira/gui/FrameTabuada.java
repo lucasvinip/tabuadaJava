@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -51,6 +52,8 @@ public class FrameTabuada {
 		// obter instância da tela
 		Container painel = tela.getContentPane();
 		painel.setBackground(corDaTela);
+		
+		
 		
 		//criar os componetes da tela
 		
@@ -157,6 +160,12 @@ public class FrameTabuada {
 					tabuada.multiplicando = Integer.parseInt(textFieldMultiplicando.getText());
 					tabuada.minMultiplicador = Integer.parseInt(textFieldMinMultiplicador.getText());
 					tabuada.maxMultipicador = Integer.parseInt(textFieldMaxMultiplicador.getText());
+					 
+					if(tabuada.maxMultipicador < tabuada.minMultiplicador) {
+						JOptionPane.showMessageDialog(null, "Máximo multiplicador tem que ser maior que o mínimo", 
+								"ERRO", 
+								JOptionPane.ERROR_MESSAGE);
+					} 
 					
 					lista.setListData(tabuada.getTabuada());
 				}
@@ -183,7 +192,7 @@ public class FrameTabuada {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 			
@@ -254,7 +263,7 @@ public class FrameTabuada {
 		painel.add(labelResultado);
 		painel.add(scroll);
 		painel.add(labelImagem);
-		
+	
 		
 		
 		
