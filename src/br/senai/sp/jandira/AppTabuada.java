@@ -14,6 +14,7 @@ public class AppTabuada {
 		tela.titulo = "Tabuada";
 		tela.altura = 650;
 		tela.largura = 700;
+		tela.corDaTela = new Color(220,220,220);
 		tela.corDoTitulo = new Color(220, 20, 60);
 		tela.fonteDoTitulo = new Font("Cooper Black", Font.ITALIC, 20);
 		tela.fonteDoSubTitulo = new Font("Cooper Black", Font.ITALIC, 15);

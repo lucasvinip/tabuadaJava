@@ -3,16 +3,21 @@ package br.senai.sp.jandira.gui;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import br.senai.sp.jandira.model.Tabuada;
@@ -21,6 +26,7 @@ public class FrameTabuada {
 
 	public String titulo;
 	public int largura, altura;
+	public Color corDaTela;
 	public Color corDoTitulo;
 	public Font fonteDoTitulo;
 	public Font fonteDoSubTitulo;
@@ -44,22 +50,28 @@ public class FrameTabuada {
 		
 		// obter instância da tela
 		Container painel = tela.getContentPane();
-		
+		painel.setBackground(corDaTela);
 		
 		//criar os componetes da tela
-			
+		
+		ImageIcon imagem = new ImageIcon(getClass().getResource("calculadora.png"));
+		JLabel labelImagem = new JLabel(imagem);
+		
+		labelImagem.setBounds(25, 20, 50, 30);
+		
 		JLabel labelTabuada1 = new JLabel();
 		labelTabuada1.setText("Tabuada 1.0");
 		labelTabuada1.setBounds(100, 10, 200, 30);
 		labelTabuada1.setForeground(corDoTitulo);
 		labelTabuada1.setFont(fonteDoTitulo);
 		
-		JLabel labelSubTitulo = new JLabel();
-		labelSubTitulo.setText("Com a tabuada 1.0 os seus problemas acabaram \n." + " Calcule \r\n" 
-				+ "a tabuada que desejar em segundos!");
-		
-		labelSubTitulo.setBounds(40, 30, 800, 40);
-		labelSubTitulo.setFont(fonteDoSubTitulo);
+		JTextArea textAreaSubTitulo = new JTextArea("Com a tabuada 1.0 os seus problemas acabaram. Calcule a tabuada que desejar em segundos!");
+		textAreaSubTitulo.setBounds(100, 40, 400, 40);
+		textAreaSubTitulo.setEditable(false);		
+		textAreaSubTitulo.setLineWrap(true);
+		textAreaSubTitulo.setWrapStyleWord(true);
+		textAreaSubTitulo.setFont(fonteDoSubTitulo);
+		textAreaSubTitulo.setBackground(corDaTela);
 		
 		//Multiplicando
 		JLabel labelMultiplicando = new JLabel();
@@ -139,8 +151,7 @@ public class FrameTabuada {
 				else if(textFieldMaxMultiplicador.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Máximo multiplicador é obrigatório");
 					textFieldMaxMultiplicador.requestFocus();
-				}
-				
+				} 
 					else {
 					Tabuada tabuada = new Tabuada();
 					tabuada.multiplicando = Integer.parseInt(textFieldMultiplicando.getText());
@@ -168,11 +179,70 @@ public class FrameTabuada {
 			}
 		});
 		
+		textFieldMultiplicando.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				textFieldMultiplicando.setText(textFieldMultiplicando.getText().replaceAll("[^0-9]", ""));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		textFieldMinMultiplicador.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				textFieldMinMultiplicador.setText(textFieldMinMultiplicador.getText().replaceAll("[^0-9]", ""));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		textFieldMaxMultiplicador.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				textFieldMaxMultiplicador.setText(textFieldMaxMultiplicador.getText().replaceAll("[^0-9]", ""));
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		
 		//Adicionar ao painel
 		painel.add(labelTabuada1);
-		painel.add(labelSubTitulo);
+		painel.add(textAreaSubTitulo);
 		painel.add(labelMultiplicando);
 		painel.add(labelMinMultiplicador);
 		painel.add(labelMaxMultiplicador);
@@ -183,6 +253,7 @@ public class FrameTabuada {
 		painel.add(buttonLimpar);
 		painel.add(labelResultado);
 		painel.add(scroll);
+		painel.add(labelImagem);
 		
 		
 		
